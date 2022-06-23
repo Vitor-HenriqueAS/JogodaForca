@@ -1,10 +1,15 @@
+/**
+ * Chama função aleatorio() e guardando retorno no selectbox
+ * - Reseta os itens para Começar ou Recomeçar a partida
+ * - Ativa a Contagem Regressiva, qtd 3 min
+ */
 function comeca() {
     qtdRisco = []
     selectbox = aleatorio()
     var quantLetra = document.getElementById("quantLetra") 
 
     for (var x = 0;x < selectbox.length; x++) {
-        qtdRisco.push(" __ "); // ADICIONA NO VETOR
+        qtdRisco.push(" __ ");
     }
     quantLetra.innerHTML = qtdRisco
 
@@ -28,6 +33,7 @@ function comeca() {
         vida[x].style.display = 'inline';
     }
 
+    //RESETA
     vidas = 6
     resposta = qtdRisco
     win = ""
@@ -42,10 +48,14 @@ function comeca() {
     tempo = startTimer(duration, display); // iniciando o timer
 }
 
+/**
+ * Escolhe o tema aleatoriamente, já colocando na tela
+ * @returns {string} - A palavra a ser descorberta pelo player
+ */
 function aleatorio(){
     var numPalavra = 0
 
-    const frutas = ["UVA", "GOIABA", "ABACAXI", "CAQUI", "MELAO", "PERA", "ABACATE", "TAGERINA", "LARANJA", "MAÇA", "BANANA", "MAMAO", "MORANGO", "COCO", "MANGA", "PESSEGO", "MARACUJA", "AÇAI", "FIGO", "MELANCIA", "KIWI", "PEQUI", "MEXERICA", "PISTACHE", "GROSELHA", "LICHIA"]
+    const frutas = ["UVA", "GOIABA", "ABACAXI", "CAQUI", "MELAO", "PERA", "ABACATE", "TANGERINA", "LARANJA", "MAÇA", "BANANA", "MAMAO", "MORANGO", "COCO", "MANGA", "PESSEGO", "MARACUJA", "AÇAI", "FIGO", "MELANCIA", "KIWI", "PEQUI", "MEXERICA", "PISTACHE", "GROSELHA", "LICHIA"]
     const objetos = ["ZIPER", "XADREZ", "SPRAY", "FREEZER", "AMPULHETA", "ANZOL", "CADEIRA", "GARRAFA", "PORTA", "CELULAR", "CANETA", "MICROFONE", "ESPELHO", "GELADEIRA", "CARTA", "BRINCO", "GAVETA", "TECLADO", "IMPRESSORA", "PANELA", "COLHER", "LAPISEIRA", "CAIXA", "TV"]
     const animais = ["MARRECO", "ROUXINOL", "SANGUESSUGA", "PERCEVEJO", "PELICANO", "HAMSTER", "GIRAFA", "JACARE", "ONÇA", "RATO", "AGUIA", "GATO", "CACHORRO", "ELEFANTE", "BUFALO", "ZEBRA", "QUATI", "CAVALO", "TOURO", "OVELHA", "VACA", "BOI", "MACACO", "COBRA", "BODE", "BURRO"]
     const comidaBebida = ["STROGONOFF", "MACARRAO", "CHURRASCO", "PIZZA", "SUSHI", "CAFE", "HAMBURGUER", "AGUA", "LIMONADA", "FEIJOADA", "CACHAÇA", "REFRIGERANTE", "VINHO", "CHAMPAGNE", "CUCUZ", "OMELETE", "BRIGADEIRO", "BOLO", "TOFU", "PANQUECA", "BACON", "ROCAMBOLE", "PASTEL"]
@@ -81,6 +91,13 @@ function aleatorio(){
     return selectbox
 }
 
+/**
+ * @param {number} duration - Qual a duração que a Contagem irá ter
+ * @param {object} display  - Onde será exibido a contagem
+ * Converte seg em min/seg em contagem regressiva
+ * Se o tempo acabar (--timer < 0), mostra a tela de derrota
+ * Se a var stopTemp for igual a 1, para o tempo (perdeu por vidas/ ganhou)
+ */
 function startTimer(duration, display) {
     let timer = duration, minutes, seconds;
     var x = setInterval(function () {
@@ -150,6 +167,10 @@ function letra(letra, id) {
     }
 }
 
+/**
+ * @param {string} sl - Saber se o usuario quer tema claro/escuro (sl = sol ou lua)
+ * Muda o design da página, diante a escolha do usuario
+ */
 function lightDark(sl){
     if (sl == "sol"){
         document.body.style.backgroundImage = 'linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%)';
@@ -169,6 +190,11 @@ function lightDark(sl){
     }
 }
 
+/**
+ * Aparece a tela de Derrota com o display
+ * Desaparece o teclado com display
+ * e adiciona o valor 1 na var stopTemp para Parar o tempo
+ */
 function perdeuJogo(){
     document.getElementById("comeca").style.display = "inline"
     document.querySelector("#defeatWin h1").innerHTML = "GAME OVER !"
@@ -186,6 +212,11 @@ function perdeuJogo(){
     stopTemp = 1
 }
 
+/**
+ * Aparece a tela de Vitória com o display
+ * Desaparece o teclado com display
+ * e adiciona o valor 1 na var stopTemp para Parar o tempo
+ */
 function ganhouJogo(){
     document.getElementById("comeca").style.display = "inline"
     document.querySelectorAll("input.letras").disabled = true

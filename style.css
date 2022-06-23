@@ -16,17 +16,17 @@ a:hover {
 
 .logo {
     font-size: 24px;
-    text-transform: uppercase;/*Letra Maiuscula*/
-    letter-spacing: 4px;/*Espaço a cada letra de 4px*/
+    text-transform: uppercase;
+    letter-spacing: 4px;
 }
 
 nav {
     display: flex;
-    justify-content: space-around;/*espaço ao redor, seja a metade d espaço entre eles*/
-    align-items: center; /*Alinhar itens verticalmente*/
-    font-family: system-ui, -apple-system, 'Josefin Sans', sans-serif; /*fonte do sistema*/
+    justify-content: space-around;
+    align-items: center;
+    font-family: system-ui, -apple-system, 'Josefin Sans', sans-serif;
     background-color: #3a0202;
-    height: 8vh; /*vh, maneira q se adapta de maneira responsiva*/
+    height: 8vh;
 }
 
 .nav-list{
