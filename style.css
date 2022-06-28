@@ -41,14 +41,14 @@ nav {
 }
 
 .lightDark:hover{
-    background-color: rgb(73, 73, 73);
+    background-color: #494949;
 }
 
 /*JOGO*/
 
 body{
     height: 100vh;
-    background-image: linear-gradient(to top, #434343 0%, black 100%);
+    background-color:  #202020;
 }
 
 .jogo{
@@ -110,4 +110,30 @@ h1{
 
 #comeca:hover {
     cursor: pointer;
+}
+
+.mobile-keyboard{
+    display: none;
+}
+
+.mobile-keyboard-cell{
+    display: none;
+}
+
+@media (max-width: 611px){
+    .mobile-keyboard{
+        display: block;
+    }
+}
+
+@media (max-width: 303px){
+    .logo {
+        font-size: 18px;
+    }
+    .mobile-keyboard-cell{
+        display: block;
+    }
+    .vida{
+        width: 20px;
+    }
 }
