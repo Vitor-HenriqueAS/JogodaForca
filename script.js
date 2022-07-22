@@ -8,7 +8,7 @@ function comeca() {
     selectbox = aleatorio()
     var quantLetra = document.getElementById("quantLetra") 
 
-    for (var x = 0;x < selectbox.length; x++) {
+    for (let posicao in selectbox) {
         qtdRisco.push(" __ ");
     }
     quantLetra.innerHTML = qtdRisco
@@ -56,13 +56,15 @@ function aleatorio(){
     var numPalavra = 0
 
     var temas = [
-        ["FRUTA","UVA", "GOIABA", "ABACAXI", "CAQUI", "MELAO", "PERA", "ABACATE", "TANGERINA", "LARANJA", "MAÇA", "BANANA", "MAMAO", "MORANGO", "COCO", "MANGA", "PESSEGO", "MARACUJA", "AÇAI", "FIGO", "MELANCIA", "KIWI", "PEQUI", "MEXERICA", "PISTACHE", "GROSELHA", "LICHIA"],
-        ["OBJETO","ZIPER", "XADREZ", "SPRAY", "FREEZER", "AMPULHETA", "ANZOL", "CADEIRA", "GARRAFA", "PORTA", "CELULAR", "CANETA", "MICROFONE", "ESPELHO", "GELADEIRA", "CARTA", "BRINCO", "GAVETA", "TECLADO", "IMPRESSORA", "PANELA", "COLHER", "LAPISEIRA", "CAIXA", "TV"],
-        ["ANIMAL","MARRECO", "ROUXINOL", "SANGUESSUGA", "PERCEVEJO", "PELICANO", "HAMSTER", "GIRAFA", "JACARE", "ONÇA", "RATO", "AGUIA", "GATO", "CACHORRO", "ELEFANTE", "BUFALO", "ZEBRA", "QUATI", "CAVALO", "TOURO", "OVELHA", "VACA", "BOI", "MACACO", "COBRA", "BODE", "BURRO"],
-        ["COMIDA E BEBIDA","STROGONOFF", "MACARRAO", "CHURRASCO", "PIZZA", "SUSHI", "CAFE", "HAMBURGUER", "AGUA", "LIMONADA", "FEIJOADA", "CACHAÇA", "REFRIGERANTE", "VINHO", "CHAMPAGNE", "CUCUZ", "OMELETE", "BRIGADEIRO", "BOLO", "TOFU", "PANQUECA", "BACON", "ROCAMBOLE", "PASTEL"],
-        ["PAÍS","EUA", "JAPÃO", "CHINA", "FRANÇA", "ESPANHA", "ITALIA", "MEXICO", "ALEMANHA", "BRASIL", "TURQUIA", "TAILANDIA", "QATAR", "JAMAICA", "AUTRALIA", "SUIÇA", "PARAGUAI", "ARGENTINA", "CANADA", "COLOMBIA", "BOLIVIA", "CROACIA"]
+        ["FRUTA", "UVA", "GOIABA", "ABACAXI", "CAQUI", "MELAO", "PERA", "ABACATE", "TANGERINA", "LARANJA", "MAÇA", "BANANA", "MAMAO", "MORANGO", "COCO", "MANGA", "PESSEGO", "MARACUJA", "AÇAI", "FIGO", "MELANCIA", "KIWI", "PEQUI", "MEXERICA", "PISTACHE", "GROSELHA", "LICHIA"],
+        ["OBJETO", "ZIPER", "XADREZ", "SPRAY", "FREEZER", "AMPULHETA", "ANZOL", "CADEIRA", "GARRAFA", "PORTA", "CELULAR", "CANETA", "MICROFONE", "ESPELHO", "GELADEIRA", "CARTA", "BRINCO", "GAVETA", "TECLADO", "IMPRESSORA", "PANELA", "COLHER", "LAPISEIRA", "CAIXA", "TV"],
+        ["ANIMAL", "MARRECO", "ROUXINOL", "SANGUESSUGA", "PERCEVEJO", "PELICANO", "HAMSTER", "GIRAFA", "JACARE", "ONÇA", "RATO", "AGUIA", "GATO", "CACHORRO", "ELEFANTE", "BUFALO", "ZEBRA", "QUATI", "CAVALO", "TOURO", "OVELHA", "VACA", "BOI", "MACACO", "COBRA", "BODE", "BURRO"],
+        ["COMIDA E BEBIDA", "STROGONOFF", "MACARRAO", "CHURRASCO", "PIZZA", "SUSHI", "CAFE", "HAMBURGUER", "AGUA", "LIMONADA", "FEIJOADA", "CACHAÇA", "REFRIGERANTE", "VINHO", "CHAMPAGNE", "CUCUZ", "OMELETE", "BRIGADEIRO", "BOLO", "TOFU", "PANQUECA", "BACON", "ROCAMBOLE", "PASTEL"],
+        ["PAÍS", "EUA", "JAPAO", "CHINA", "FRANÇA", "ESPANHA", "ITALIA", "MEXICO", "ALEMANHA", "BRASIL", "TURQUIA", "TAILANDIA", "QATAR", "JAMAICA", "AUTRALIA", "SUIÇA", "PARAGUAI", "ARGENTINA", "CANADA", "COLOMBIA", "BOLIVIA", "CROACIA"]
     ]
-    var numTema = Math.floor(Math.random() * 4);
+    console.log(temas[4])
+
+    var numTema = Math.floor(Math.random() * 5);
     numPalavra = Math.floor(Math.random() * temas[numTema].length + 1);
     var selectbox = temas[numTema][numPalavra]
     document.getElementById("tema").innerHTML = temas[numTema][0]
@@ -104,7 +106,7 @@ function letra(letra, id) {
     //SE AS VIDAS NÃO ACABAREM !
     if(!vidas < 1){
 
-        for (x = 0; x < selectbox.length; x++){
+        for (let x in selectbox){
 
             if (selectbox[x] == letra){
                 qtdRisco.splice(x, 1, letra);
@@ -129,6 +131,7 @@ function letra(letra, id) {
             var resposta1 = resposta.toString().replaceAll(",","")
             var resposta2 = resposta1.toString().replaceAll("__","")
             win = resposta2.toString().replaceAll(" ","")
+            
         }
     
         if (selectbox == win){ // Ganhou o Jogo
@@ -152,19 +155,16 @@ function letra(letra, id) {
 function lightDark(sl){
     if (sl == "sol"){
         document.body.style.backgroundColor = '#e3eeff';
-        document.getElementById("nav").style.backgroundColor = '#a1c4fd'
-        document.getElementById("comeca").style.backgroundColor = '#a1c4fd'
-        document.querySelector(".nav-list").style.color = "black"
-        document.querySelector("a").style.color = "black"
-        document.querySelector(".jogo").style.color = "black"
+        var navBtn = document.querySelectorAll("nav, #comeca").style.backgroundColor = '#a1c4fd'
+        var solLetras = document.querySelectorAll(".nav-list, a, .jogo").style.color = "black"
+
+        navBtn.style.backgroundColor = '#a1c4fd'
+        solLetras.style.color = "black"
     }
     if (sl == "lua"){
         document.body.style.backgroundColor = '#202020';
-        document.getElementById("nav").style.backgroundColor = '#3a0202'
-        document.getElementById("comeca").style.backgroundColor = '#3a0202'
-        document.querySelector(".nav-list").style.color = "#fff"
-        document.querySelector("a").style.color = "#fff"
-        document.querySelector(".jogo").style.color = "#fff"
+        document.querySelectorAll("nav, #comeca").style.backgroundColor = '#3a0202'
+        document.querySelectorAll(".nav-list, a, .jogo").style.color = "#fff"
     }
 }
 
