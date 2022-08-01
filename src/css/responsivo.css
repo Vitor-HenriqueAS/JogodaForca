@@ -1,0 +1,25 @@
+.mobile-keyboard{
+    display: none;
+}
+
+.mobile-keyboard-cell{
+    display: none;
+}
+
+@media (max-width: 611px){
+    .mobile-keyboard{
+        display: block;
+    }
+}
+
+@media (max-width: 303px){
+    .logo {
+        font-size: 18px;
+    }
+    .mobile-keyboard-cell{
+        display: block;
+    }
+    .vida{
+        width: 20px;
+    }
+}
